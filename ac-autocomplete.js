@@ -1,3 +1,9 @@
+/**
+ * Input para utilizar cuando se requiera un campo con autocompletar
+ * El input utiliza las funcionas propias de cada unidad funcional para obtener un array, el cual luego
+ * filtra por los campos deseados y luego muestra los resultados en el formato que se desee.
+ * El formato individual de cada columna de resultado, se debe dar, formateando los spans generados (uno por cada columna).
+ */
 (function () {
     'use strict';
 
@@ -185,7 +191,6 @@
 
         });
 
-
         /**
          * Función asociada al Enter y al abandonar el control. Actualiza la información y remueve el panel.
          */
@@ -202,8 +207,7 @@
                 panel.remove();
             }
         }
-
-
+        
         /**
          * muevo siempre el cursor al final el input, solo para comodidad del usuario
          */
