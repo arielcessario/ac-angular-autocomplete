@@ -111,6 +111,7 @@
                 vm.filteredList.forEach(function (e, i, a) {
                     detalle = detalle +
                         '<li ng-click="$ctrl.select(' + i + ')" ' +
+                        'ng-mouseover="$ctrl.select(' + i + ')" ' +
                         'ng-class="{\'ac-autocomplete-selected\':$ctrl.indexSelected==\'' + i + '\'}">';
                     vm.camposAMostrar.forEach(function (elem, index, array) {
                         detalle = detalle + '<span>' + e[elem] + '</span>'
