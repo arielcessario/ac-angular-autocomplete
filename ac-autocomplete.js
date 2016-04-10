@@ -84,18 +84,21 @@
          * Filtra los datos obtenidos
          */
         function filter() {
-            vm.filteredList = [];
-            vm.cacheList.filter(function (e, i, a) {
-                vm.camposAComparar.forEach(function (elem, index, array) {
-                    if (!vm.filteredList.hasOwnProperty(i)) {
-                        if ((vm.exacto && e[elem].toUpperCase() == vm.searchText.toUpperCase()) ||
-                            (!vm.exacto && e[elem].toUpperCase().indexOf(vm.searchText.toUpperCase()) > -1)) {
-                            return vm.filteredList[i] = e;
+
+            if (vm.cacheList != undefined) {
+                vm.filteredList = [];
+                vm.cacheList.filter(function (e, i, a) {
+                    vm.camposAComparar.forEach(function (elem, index, array) {
+                        if (!vm.filteredList.hasOwnProperty(i)) {
+                            if ((vm.exacto && e[elem].toUpperCase() == vm.searchText.toUpperCase()) ||
+                                (!vm.exacto && e[elem].toUpperCase().indexOf(vm.searchText.toUpperCase()) > -1)) {
+                                return vm.filteredList[i] = e;
+                            }
                         }
-                    }
+                    });
                 });
-            });
-            finish();
+                finish();
+            }
         }
 
         /**
@@ -207,7 +210,7 @@
                 panel.remove();
             }
         }
-        
+
         /**
          * muevo siempre el cursor al final el input, solo para comodidad del usuario
          */
