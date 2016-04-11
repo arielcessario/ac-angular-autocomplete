@@ -68,7 +68,7 @@
 
             // Si no está en el caché, la vuelvo a ejecutar, lo limpio al seleccionar uno de los resultados
             // TODO: No me convence que si los datos tienen cambio, esto no se entera
-            if (vm.cacheList.length == 0) {
+            if (vm.cacheList !== undefined && vm.cacheList.length == 0) {
                 vm.searchFunction({
                     callback: function (data) {
                         vm.cacheList = data;
