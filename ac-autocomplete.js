@@ -30,7 +30,7 @@
         });
 
 
-    AcAutocompleteController.$inject = ["$element", "$scope", "$compile", "$timeout"];
+    AcAutocompleteController.$inject = ["$element", "$scope", "$compile", "$timeout", "AcUtils"];
     /**
      * @param searchFunction Función de búsqueda, siempre es una función que trae todo y se filtra dentro del componente
      * @param searchFields Campos por los cuales se debe realizar el filtro
@@ -42,7 +42,7 @@
      * @param $scope
      * @constructor
      */
-    function AcAutocompleteController($element, $scope, $compile, $timeout) {
+    function AcAutocompleteController($element, $scope, $compile, $timeout, AcUtils) {
         var vm = this;
         // identificador único del scope dentro la vista
         vm.id = $scope.$id;
@@ -68,7 +68,8 @@
 
             // Si no está en el caché, la vuelvo a ejecutar, lo limpio al seleccionar uno de los resultados
             // TODO: No me convence que si los datos tienen cambio, esto no se entera
-            if (vm.cacheList !== undefined && vm.cacheList.length == 0) {
+            if (vm.cacheList == undefined || vm.cacheList.length == 0) {
+
                 vm.searchFunction({
                     callback: function (data) {
                         vm.cacheList = data;
@@ -76,6 +77,7 @@
                     }
                 });
             } else {
+
                 filter();
             }
         }
@@ -84,7 +86,6 @@
          * Filtra los datos obtenidos
          */
         function filter() {
-
             if (vm.cacheList != undefined) {
                 vm.filteredList = [];
                 vm.cacheList.filter(function (e, i, a) {
@@ -99,6 +100,7 @@
                 });
                 finish();
             }
+
         }
 
         /**
@@ -162,7 +164,6 @@
         $element.children().bind('blur', function () {
             onLeave();
         });
-
 
         /**
          * Agrego funcionalidad para keyup y focus
