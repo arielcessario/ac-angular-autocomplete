@@ -25,7 +25,7 @@
             '<input type="text" ' +
             'id="ac-autocomplete-{{$ctrl.id}}" ' +
             'ng-change="$ctrl.getList();" ' +
-            'ng-model="$ctrl.searchText">',
+            'ng-model="$ctrl.searchText" autocomplete="off">',
             controller: AcAutocompleteController
         });
 
