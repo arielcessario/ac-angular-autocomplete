@@ -91,8 +91,8 @@
                 vm.cacheList.filter(function (e, i, a) {
                     vm.camposAComparar.forEach(function (elem, index, array) {
                         if (!vm.filteredList.hasOwnProperty(i)) {
-                            if ((vm.exacto && e[elem].toUpperCase() == vm.searchText.toUpperCase()) ||
-                                (!vm.exacto && e[elem].toUpperCase().indexOf(vm.searchText.toUpperCase()) > -1)) {
+                            if (e[elem] != null && ((vm.exacto && e[elem].toUpperCase() == vm.searchText.toUpperCase()) ||
+                                (!vm.exacto && e[elem].toUpperCase().indexOf(vm.searchText.toUpperCase()) > -1))) {
                                 return vm.filteredList[i] = e;
                             }
                         }
