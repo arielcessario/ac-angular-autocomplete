@@ -125,7 +125,15 @@
                         'ng-mouseover="$ctrl.select(' + i + ')" ' +
                         'ng-class="{\'ac-autocomplete-selected\':$ctrl.indexSelected==\'' + i + '\'}">';
                     vm.camposAMostrar.forEach(function (elem, index, array) {
-                        detalle = detalle + '<span>' + e[elem] + '</span> '
+                        if (elem.indexOf('[') > -1) {
+                            var subElems = elem.split('.');
+                            var indice = subElems[0].replace(']','').substr(elem.indexOf('[') + 1);
+                            var mainElem = subElems[0].substr(0, elem.indexOf('['));
+
+                            detalle = detalle + '<span>' + e[mainElem][indice][subElems[1]] + '</span> '
+                        } else {
+                            detalle = detalle + '<span>' + e[elem] + '</span> '
+                        }
                     });
                     detalle = detalle + '</li>';
                 });
@@ -164,6 +172,7 @@
         $element.children().bind('blur', function () {
             onLeave();
         });
+
 
         /**
          * Agrego funcionalidad para keyup y focus
