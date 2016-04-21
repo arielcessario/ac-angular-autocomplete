@@ -173,7 +173,6 @@
             onLeave();
         });
 
-
         /**
          * Agrego funcionalidad para keyup y focus
          */
@@ -208,7 +207,7 @@
          * Función asociada al Enter y al abandonar el control. Actualiza la información y remueve el panel.
          */
         function onLeave() {
-            if (vm.searchText.trim().length == 0 || vm.filteredList.length == 0) {
+            if (vm.searchText== undefined || vm.searchText.trim().length == 0 || vm.filteredList.length == 0) {
                 select(-1);
             } else {
                 select(vm.indexSelected);
