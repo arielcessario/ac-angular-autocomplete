@@ -20,7 +20,7 @@
                 selectedTo: '=',
                 href: '=',
                 exact: '=',
-                clear: '='
+                clear: '<'
             },
             template: '' +
             '<input type="text" ' +
