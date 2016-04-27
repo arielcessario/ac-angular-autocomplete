@@ -19,7 +19,8 @@
                 fieldsToShow: '=',
                 selectedTo: '=',
                 href: '=',
-                exact: '='
+                exact: '=',
+                clear: '='
             },
             template: '' +
             '<input type="text" ' +
@@ -54,6 +55,7 @@
         vm.camposAComparar = (vm.searchFields) ? vm.searchFields.split(',') : [];
         vm.camposAMostrar = (vm.fieldsToShow) ? vm.fieldsToShow.split(',') : [];
         vm.exacto = (vm.exact) ? vm.exact : false;
+        vm.clear = (vm.clear) ? vm.clear : false;
 
 
         vm.getList = getList;
@@ -68,7 +70,7 @@
 
             // Si no está en el caché, la vuelvo a ejecutar, lo limpio al seleccionar uno de los resultados
             // TODO: No me convence que si los datos tienen cambio, esto no se entera
-            if (vm.cacheList == undefined || vm.cacheList.length == 0) {
+            if (vm.cacheList == undefined || vm.cacheList.length == 0 || vm.clear) {
 
                 vm.searchFunction({
                     callback: function (data) {
@@ -127,7 +129,7 @@
                     vm.camposAMostrar.forEach(function (elem, index, array) {
                         if (elem.indexOf('[') > -1) {
                             var subElems = elem.split('.');
-                            var indice = subElems[0].replace(']','').substr(elem.indexOf('[') + 1);
+                            var indice = subElems[0].replace(']', '').substr(elem.indexOf('[') + 1);
                             var mainElem = subElems[0].substr(0, elem.indexOf('['));
 
                             detalle = detalle + '<span>' + e[mainElem][indice][subElems[1]] + '</span> '
@@ -207,7 +209,7 @@
          * Función asociada al Enter y al abandonar el control. Actualiza la información y remueve el panel.
          */
         function onLeave() {
-            if (vm.searchText== undefined || vm.searchText.trim().length == 0 || vm.filteredList.length == 0) {
+            if (vm.searchText == undefined || vm.searchText.trim().length == 0 || vm.filteredList.length == 0) {
                 select(-1);
             } else {
                 select(vm.indexSelected);
