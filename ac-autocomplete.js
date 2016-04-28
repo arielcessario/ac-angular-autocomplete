@@ -159,7 +159,7 @@
                 if (index == -1) {
                     vm.selectedTo = {};
                 } else {
-                    vm.selectedTo = vm.filteredList[index];
+                    vm.selectedTo = angular.copy(vm.filteredList[index]);
                 }
                 vm.indexSelected = index;
 
